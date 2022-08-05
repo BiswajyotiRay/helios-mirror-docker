@@ -11,15 +11,15 @@ RUN apt-get -y update && apt-get -y upgrade && \
         autoconf libtool libcurl4-openssl-dev qt5-default \
         libsodium-dev libssl-dev libcrypto++-dev libc-ares-dev \
         libsqlite3-dev libfreeimage-dev swig libboost-all-dev \
-        libpthread-stubs0-dev zlib1g-dev
-        
+        libpthread-stubs0-dev zlib1g-dev \
+        libglib2.0 libnss3 libgconf-2-4 libfontconfig1 \
+        wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \ 
+        && echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list
+
 # Installing Megasdkrest
 RUN curl -fsSL https://github.com/jaskaranSM/megasdkrest/releases/download/v0.1/megasdkrest -o /usr/local/bin/megasdkrest \
 && chmod +x /usr/local/bin/megasdkrest
-RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \ 
-&& echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list
 
-RUN apt install mediainfo -y
 # Installing Mega SDK Python Binding
 ENV MEGA_SDK_VERSION="3.8.1"
 RUN git clone https://github.com/meganz/sdk.git --depth=1 -b v$MEGA_SDK_VERSION ~/home/sdk \
