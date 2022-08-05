@@ -12,9 +12,7 @@ RUN apt-get -y update && apt-get -y upgrade && \
         libsodium-dev libssl-dev libcrypto++-dev libc-ares-dev \
         libsqlite3-dev libfreeimage-dev swig libboost-all-dev \
         libpthread-stubs0-dev zlib1g-dev \
-        libglib2.0 libnss3 libgconf-2-4 libfontconfig1 \
-        wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \ 
-        && echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list
+        libglib2.0 libnss3 libgconf-2-4 libfontconfig1
 
 # Installing Megasdkrest
 RUN curl -fsSL https://github.com/jaskaranSM/megasdkrest/releases/download/v0.1/megasdkrest -o /usr/local/bin/megasdkrest \
